@@ -1,16 +1,9 @@
-胖东来
-于东来
-
 DeepSeek
 梁文锋
 
-华为
-鸿蒙
-HarmonyOS
-任正非
-
-比亚迪
-王传福
+Insta360
+Sony
+索尼
 
 大疆
 DJI
@@ -26,21 +19,15 @@ DJI
 黑神话
 冯骥
 
-影之刃零
 梁其伟
 
 哪吒
 饺子
-杨宇
-!车
-!餐
 
 三体
 流浪地球
 刘慈欣
 郭帆
-
-申奥
 
 京东
 刘强东
@@ -51,6 +38,8 @@ bytedance
 
 特斯拉
 马斯克
+space-x
+Elon Musk
 
 微软
 Microsoft
@@ -79,8 +68,8 @@ mac
 ios
 
 ai
-!gai
 人工智能
+transformer
 
 自动驾驶
 

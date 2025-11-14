@@ -39,6 +39,7 @@
 | [🎯 核心功能](#-核心功能) | [🚀 快速开始](#-快速开始) | [🐳 Docker部署](#-docker-部署) | [🤖 AI分析专区](#-ai-智能分析部署) |
 |:---:|:---:|:---:|:---:|
 | [📝 更新日志](#-更新日志) | [🔌 MCP客户端](#-mcp-客户端) | [❓ 答疑与常见问题](#问题答疑与1元点赞) | [⭐ 项目相关](#项目相关) |
+| [🔧 自定义监控平台](#自定义监控平台) | [📝 frequency_words.txt 配置](#frequencywordstxt-配置教程) | | |
 
 </div>
 
@@ -47,7 +48,7 @@
 - 感谢**关注[公众号](#问题答疑与1元点赞)** 的读者们，你们的留言、点赞、分享和推荐等积极互动让内容更有温度😎。  
 
 <details>
-<summary>👉 点击查看<strong>致谢名单</strong> (当前 <strong>🔥53🔥</strong> 位)</summary>
+<summary>👉 点击查看<strong>致谢名单</strong> (当前 <strong>🔥62🔥</strong> 位)</summary>
 
 ### 数据支持
 
@@ -67,6 +68,15 @@
 
 |           点赞人            |  金额  |  日期  |             备注             |
 | :-------------------------: | :----: | :----: | :-----------------------: |
+|           **柯          |  1  | 2025.11.14  |     | 
+|           *云          |  88  | 2025.11.13  |    好项目，感谢开源  | 
+|           *W          |  6  | 2025.11.13  |      | 
+|           *凯          |  1  | 2025.11.13  |      | 
+|           对*.          |  1  | 2025.11.13  |    Thanks for your TrendRadar  | 
+|           s*y          |  1  | 2025.11.13  |      | 
+|           **翔          |  10  | 2025.11.13  |   好项目，相见恨晚，感谢开源！     | 
+|           *韦          |  9.9  | 2025.11.13  |   TrendRadar超赞，请老师喝咖啡~     | 
+|           h*p          |  5  | 2025.11.12  |   支持中国开源力量，加油！     | 
 |           c*r          |  6  | 2025.11.12  |        | 
 |           a*n          |  5  | 2025.11.12  |        | 
 |           。*c          |  1  | 2025.11.12  |    感谢开源分享    | 
@@ -140,7 +150,7 @@
 
 默认监控 11 个主流平台，也可自行增加额外的平台
 
-<details>
+<details id="自定义监控平台">
 <summary><strong>👉 自定义监控平台</strong></summary>
 <br>
 
@@ -196,7 +206,7 @@ platforms:
 
 > 也可以不做筛选，完整的推送所有热点，具体见【历史更新】中的 v2.0.1
 
-<details>
+<details id="frequencywordstxt-配置教程">
 <summary><strong>👉 frequency_words.txt 配置教程</strong></summary>
 <br>
 
@@ -1252,7 +1262,7 @@ docker run -d --name trend-radar \
    |---------|---------|-------|------|
    | `ENABLE_CRAWLER` | `crawler.enable_crawler` | `true` / `false` | 是否启用爬虫 |
    | `ENABLE_NOTIFICATION` | `notification.enable_notification` | `true` / `false` | 是否启用通知 |
-   | `REPORT_MODE` | `report.mode` | `all` / `filtered` | 报告模式 |
+   | `REPORT_MODE` | `report.mode` | `daily` / `incremental` / `current`| 报告模式 |
    | `PUSH_WINDOW_ENABLED` | `notification.push_window.enabled` | `true` / `false` | 推送时间窗口开关 |
    | `PUSH_WINDOW_START` | `notification.push_window.time_range.start` | `08:00` | 推送开始时间 |
    | `PUSH_WINDOW_END` | `notification.push_window.time_range.end` | `22:00` | 推送结束时间 |
@@ -1265,16 +1275,6 @@ docker run -d --name trend-radar \
    - 或在 NAS/群晖 Docker 管理界面的"环境变量"中直接添加
    - 重启容器后生效：`docker-compose restart`
 
-   **验证配置**：
-   ```bash
-   docker logs trend-radar | grep "配置来源\|来源:"
-   ```
-   输出示例：
-   ```
-   爬虫状态: 已启用 (来源: 环境变量)
-   报告模式: filtered (来源: 环境变量)
-   通知渠道配置来源: 飞书(环境变量), 邮件(配置文件)
-   ```
 
 3. **启动服务**:
    ```bash
@@ -1453,7 +1453,7 @@ TrendRadar MCP 服务支持标准的 Model Context Protocol (MCP) 协议，可�
 <details>
 <summary><b>👉 Cursor</b></summary>
 
-#### 方式一：HTTP 模式（推荐）
+#### 方式一：HTTP 模式
 
 1. **启动 HTTP 服务**：
    ```bash
@@ -1487,7 +1487,7 @@ TrendRadar MCP 服务支持标准的 Model Context Protocol (MCP) 协议，可�
    - 在聊天界面的 "Available Tools" 中查看已连接的工具
    - 开始使用：`搜索今天的"AI"相关新闻`
 
-#### 方式二：STDIO 模式
+#### 方式二：STDIO 模式（推荐）
 
 创建 `.cursor/mcp.json`：
 ```json
@@ -1517,7 +1517,7 @@ TrendRadar MCP 服务支持标准的 Model Context Protocol (MCP) 协议，可�
 
 在 Cline 的 MCP 设置中添加：
 
-**HTTP 模式**（推荐）：
+**HTTP 模式**：
 ```json
 {
   "trendradar": {
@@ -1529,7 +1529,7 @@ TrendRadar MCP 服务支持标准的 Model Context Protocol (MCP) 协议，可�
 }
 ```
 
-**STDIO 模式**：
+**STDIO 模式**（推荐）：
 ```json
 {
   "trendradar": {
@@ -1654,7 +1654,7 @@ MCP Inspector 是官方调试工具，用于测试 MCP 连接：
 
 任何支持 Model Context Protocol 的客户端都可以连接 TrendRadar：
 
-#### HTTP 模式（推荐）
+#### HTTP 模式
 
 **服务地址**：`http://localhost:3333/mcp`
 
@@ -1668,7 +1668,7 @@ MCP Inspector 是官方调试工具，用于测试 MCP 连接：
 }
 ```
 
-#### STDIO 模式
+#### STDIO 模式（推荐）
 
 **基本配置模板**：
 ```json
@@ -1698,7 +1698,6 @@ MCP Inspector 是官方调试工具，用于测试 MCP 连接：
 ## ☕问题答疑与1元点赞
 
 > 心意到就行，收到的**点赞**用于提高开发者开源的积极性。**点赞**已收录于**致谢名单**  
-> 提问或者留言前，建议先搜索已有的 issues 列表，或者浏览微信公众号文章留言区（找评论超过 10 的与本项目有关的文章）。
 
 - **GitHub Issues**：适合针对性强的解答。提问时请提供完整信息（截图、错误日志、系统环境等）。
 - **公众号交流**：适合快速咨询。建议优先在相关文章下的公共留言区交流，如私信，请文明礼貌用语😉
